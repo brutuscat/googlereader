@@ -35,7 +35,7 @@ Quick Start
     likes = jsonstream['items'][0]['likingUsers']
     
     #The same examples as before seems to be working for the json api too
-    jsonstream2 = xmlfeed = gr.get_feed(feed=CONST.ATOM_PREFIXE_LABEL + "important",
-                          exclude_target=CONST.ATOM_STATE_READ, json=True)
+    jsonstream2 = gr.get_feed(feed=CONST.ATOM_PREFIXE_LABEL + "important",
+                              exclude_target=CONST.ATOM_STATE_READ, json=True)
     
 You can also modify and run the GoogleReader.test() method to see if everything is running smoothly.
