@@ -14,6 +14,11 @@ from feed import GoogleFeed
 from object import GoogleObject
 from const import CONST
 
+try:
+    import json 
+except ImportError:
+    import simplejson as json
+     
 class GoogleReader(object) :
     '''This class provide python binding for GoogleReader http://google.com/reader/'''
     def __init__(self,agent=None,http_proxy=None) :
@@ -113,10 +118,17 @@ class GoogleReader(object) :
         kwargs['client'] = CONST.AGENT
         kwargs['timestamp'] = self.get_timestamp()
         self._translate_args( CONST.ATOM_ARGS, urlargs, kwargs )
+        
+        if 'json' in kwargs and kwargs['json'] is True:
+            feedurl = CONST.URI_PREFIXE_JSON + feed
 
-        atomfeed = self._web.get(feedurl + '?' + urllib.urlencode(urlargs))
-        if atomfeed != '' :
-            return GoogleFeed(atomfeed)
+            atomfeed = self._web.get(feedurl + '?' + urllib.urlencode(urlargs))
+            if atomfeed != '' :
+                return json.loads(atomfeed) 
+        else:
+            atomfeed = self._web.get(feedurl + '?' + urllib.urlencode(urlargs))
+            if atomfeed != '' :
+                return GoogleFeed(atomfeed)
 
         return None
 

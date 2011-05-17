@@ -4,7 +4,8 @@ class CONST(object) :
     URI_PREFIXE_ATOM = URI_PREFIXE_READER + 'atom/'
     URI_PREFIXE_API = URI_PREFIXE_READER + 'api/0/'
     URI_PREFIXE_VIEW = URI_PREFIXE_READER + 'view/'
-
+    URI_PREFIXE_JSON = URI_PREFIXE_API + 'stream/contents/' 
+    
     ATOM_GET_FEED = 'feed/'
 
     ATOM_PREFIXE_USER = 'user/-/'
